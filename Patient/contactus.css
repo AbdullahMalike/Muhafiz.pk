@@ -1,0 +1,33 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.llogoedit{
+    width: 5%;
+}
+.editnbar{
+    border: 1px solid black;
+    background-color: #D2EFF7;
+    border-radius: 10px;
+}
+.editnbar:hover{
+    border: 1px solid rgb(253, 60, 60);
+    border-radius: 20px;
+    -webkit-transition: 0.3s;
+    background-color: rgb(253, 60, 60);
+  transition: 0.5s;
+}
+.bgimg{
+    background-image: url('../images/contactimg.png');
+    background-position: center;
+    height: 70vh;
+}
+.footerbgedit{
+    background-color: #D2EFF7;
+
+}
+.stylecard:hover{
+    transform: scale(1.2);
+    z-index:2 ;
+transition: 0.5s;
+}
