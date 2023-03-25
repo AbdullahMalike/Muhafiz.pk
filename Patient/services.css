@@ -1,0 +1,44 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.llogoedit{
+    width: 5%;
+}
+.editnbar{
+    border: 1px solid black;
+    background-color: #D2EFF7;
+    border-radius: 10px;
+}
+.editnbar:hover{
+    border: 1px solid rgb(253, 60, 60);
+    border-radius: 20px;
+    -webkit-transition: 0.3s;
+    background-color: rgb(253, 60, 60);
+  transition: 0.5s;
+}
+.imgedit{
+    width: 100%;
+    height: 80vh;
+}
+.lheadingedit{
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #42A5CF;
+background: linear-gradient(to right, #42A5CF 0%, #FF1C1C 36%, #11AFCF 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+.editline{
+    width: 13%;
+}
+
+.portalbtnedit:hover{
+  transform: scale(1.2);
+    z-index:1 ;
+    transition: 0.2s;
+   }
+.footerbgedit{
+    background-color: #D2EFF7;
+
+}

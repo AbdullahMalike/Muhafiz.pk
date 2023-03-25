@@ -34,9 +34,11 @@
     box-shadow: 10px 10px 60px 0px rgb(27, 167, 160);
 }
 .portalbtnedit:hover{
-    border-radius: 20px;
-    transition: 0.5s;
-    padding: 10px;
+    /* border-radius: 20px; */
+    transition: 0.1s;
+    transform: scale(1.2);
+    z-index: 2;
+    /* padding: 10px; */
 }
 .portalheadedit{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

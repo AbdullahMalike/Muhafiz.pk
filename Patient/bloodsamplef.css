@@ -17,9 +17,8 @@
     background-color: rgb(253, 60, 60);
   transition: 0.5s;
 }
-.imgedit{
-    width: 100%;
-    height: 80vh;
+.editimgb{
+   height: 50vh;
 }
 .lheadingedit{
     font-size: 40px;
@@ -28,16 +27,21 @@
 background: linear-gradient(to right, #42A5CF 0%, #FF1C1C 36%, #11AFCF 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
-}
-.editline{
-    width: 13%;
-}
 
-.portalbtnedit:hover{
-  transform: scale(1.2);
-    z-index:1 ;
-    transition: 0.2s;
-   }
+}
+.editbg{
+    background-color: rgba(75, 184, 206, 0.247); 
+}
+.editlabel{
+    width: 45%;
+}
+.editformlabl{
+    display: flex;
+    justify-content: space-around;
+}   
+.editbtnf{
+    width: 20%;
+}
 .footerbgedit{
     background-color: #D2EFF7;
 
