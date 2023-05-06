@@ -51,13 +51,16 @@
 <!-- form work start  -->
 
 <div class="container-fluid py-5">
+
+ <form method="POST" action="">
+
     <div class="editformlabl  ">
         <div class="form-floating editlabel mb-3">
-            <input type="text" class="form-control" id="pname" placeholder="Enter your name">
+            <input type="text" class="form-control" id="pname" name="pname" placeholder="Enter your name">
             <label for="pname">Name of Patient</label>
           </div>
           <div class="form-floating editlabel mb-3">
-            <input type="date" class="form-control" id="pdob" placeholder="enter date of birth">
+            <input type="date" class="form-control" id="pdob" name="pdob" placeholder="enter date of birth">
             <label for="pdob">DOB</label>
           </div>
           
@@ -69,18 +72,18 @@
         <h6>Gender</h6>
         <div class="">
             <div class="">
-                <input type="radio" name="Gender" id="Male">
+                <input type="radio" name="Gender" value="Male" id="Male">
             <label for="Male">Male</label>
             </div>
             <div>
-                <input type="radio" name="Gender" id="Female">
+                <input type="radio" name="Gender" value="Female" id="Female">
             <label for="Female">Female</label>
             </div>
         </div>
         </div>
           
        <div class="form-floating editlabel mb-3">
-        <input type="text" class="form-control" id="paddress" placeholder="e.g: street 11 douraji">
+        <input type="text" class="form-control" id="paddress" name="paddress" placeholder="e.g: street 11 douraji">
         <label for="paddress">Pick Up Address</label>
       </div>
 
@@ -89,11 +92,11 @@
 
     <div class="editformlabl  ">
         <div class="form-floating editlabel mb-3">
-            <input type="email" class="form-control" id="pemail" placeholder="name@example.com">
+            <input type="email" class="form-control" id="pemail" name="pemail" placeholder="name@example.com">
             <label for="pemail">Email</label>
           </div>
           <div class="form-floating editlabel mb-3">
-            <input type="date" class="form-control" id="pprefdate" placeholder="Preferred Date">
+            <input type="date" class="form-control" id="pprefdate" name="pprefdate" placeholder="Preferred Date">
             <label for="pprefdate">Preferred Date</label>
           </div>
           
@@ -103,23 +106,23 @@
 <div class="editformlabl">
 
     <div class="form-floating editlabel mb-3">
-  <select class="form-select" id="SelectCity" aria-label="Floating label select example">
-    <option selected>Karachi</option>
+  <select class="form-select" id="city" name="city" aria-label="Floating label select example">
+    <option value="Karachi" selected>Karachi</option>
     <!-- <option value="1">One</option>
     <option value="2">Two</option>
     <option value="3">Three</option> -->
   </select>
-  <label for="SelectCity">Select City</label>
+  <label for="city">Select City</label>
 </div>
 
 <div class="form-floating editlabel mb-3">
-    <select class="form-select" id="SelectArea" aria-label="Floating label select example">
-      <option selected>Douraji</option>
-      <option value="1">Tariq Road</option>
-      <option value="2">Johar</option>
-      <option value="3">Saddar</option>
+    <select class="form-select" id="area" name="area" aria-label="Floating label select example">
+      <option value="Douraji" selected>Douraji</option>
+      <option value="Tariq Road">Tariq Road</option>
+      <option value="Johar">Johar</option>
+      <option value="Saddar">Saddar</option>
     </select>
-    <label for="SelectArea">Select Area</label>
+    <label for="area">Select Area</label>
   </div>
 
 </div>
@@ -127,21 +130,24 @@
 <!-- 5th row  -->
 <div class="editformlabl">
     <div class="form-floating editlabel mb-3">
-        <input type="number" class="form-control" id="pnumber" placeholder="+92324344">
+        <input type="number" class="form-control" id="pnumber" name="pnumber" placeholder="+92324344">
         <label for="pnumber">Cell/PTCL Number</label>
       </div>
       <div class="form-floating editlabel">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-        <label for="floatingTextarea">Special Instruction </label>
+        <textarea class="form-control" placeholder="Leave a comment here" name="speicalinst" id="speicalinst"></textarea>
+        <label for="speicalinst">Special Instruction </label>
       </div>
 </div>
 
 <!-- btn work start  -->
    <div class="text-center">
-   <button type="button" class="btn btn-outline-danger editbtnf mt-5">Submit</button>
+   <input type="submit" class="btn btn-outline-danger editbtnf mt-5" name="submit" value="Submit">
+   <!-- <button type="button" class="btn btn-outline-danger editbtnf mt-5">Submit</button> -->
     </div>
 
 <!-- btn work end  -->
+
+</form>
 
 </div>
 
@@ -157,3 +163,47 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+<?php
+
+// Establish database connection
+$conn = mysqli_connect("localhost", "root", "", "muhafiz");
+
+if(isset($_POST['submit'])) {
+  $pname = $_POST['pname'];
+  $Gender = $_POST['Gender'];
+  $pdob = $_POST['pdob'];
+  $paddress = $_POST['paddress'];
+  $pemail = $_POST['pemail'];
+  $pprefdate = $_POST['pprefdate'];
+  $city = $_POST['city'];
+  $area = $_POST['area'];
+  $pnumber = $_POST['pnumber'];
+  $speicalinst = $_POST['speicalinst'];
+
+
+  if(!empty($pname) && !empty($Gender) && !empty($pdob) && !empty($paddress) && !empty($pemail) && !empty($pprefdate) && !empty($city) && !empty($area) && !empty($pnumber) && !empty($speicalinst) ) {
+   
+      $sql = "INSERT INTO blood_sample_form (Patient_Name, Gender, email, City, Phone_No, DOB, Pick_Up_Address, Preferred_Date, Area, Special_Instruction , created_at) VALUES ('$pname', '$Gender','$pemail', '$city', '$pnumber', '$pdob', '$paddress', '$pprefdate', '$area', '$speicalinst' , CURRENT_TIMESTAMP)";
+
+      if(mysqli_query($conn, $sql)) {
+        echo "Data inserted successfully!";
+      } else {
+        echo "Error: " . mysqli_error($conn);
+      }
+
+      // Add this line to prevent form data from being resubmitted when the page is refreshed
+      // header("Location: services.html ");
+      exit;
+   
+  } else {
+    echo "<script>alert('Please fill in all fields.');</script>";
+
+  }
+}
+?>
