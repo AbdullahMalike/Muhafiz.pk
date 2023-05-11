@@ -7,11 +7,8 @@ background: linear-gradient(to right, #42A5CF 0%, #FF1C1C 36%, #11AFCF 100%);
 -webkit-text-fill-color: transparent;
 
 }
-.editbldbtn{
-    display: inline-flex;
-    /* justify-content: end; */
-    justify-content: space-around;
- font-family: Verdana, Geneva, Tahoma, sans-serif;  
+.editbg{
+    background-color: rgba(75, 184, 206, 0.247); 
 }
 .llogoedit{
     width: 5%;
@@ -28,11 +25,27 @@ background: linear-gradient(to right, #42A5CF 0%, #FF1C1C 36%, #11AFCF 100%);
     background-color: rgb(253, 60, 60);
   transition: 0.5s;
 }
+.editnbarlog{
+    border: 1px solid black;
+    background-color: red;
+    border-radius: 10px;
+}
+.editnbarlog:hover{
+    border: 1px solid rgb(253, 60, 60);
+    border-radius: 20px;
+    -webkit-transition: 0.3s;
+    background-color: rgb(253, 60, 60);
+  transition: 0.5s;
+}
 .editimgb{
     height: 50vh;
  }
- .edittext{
-    font-size: 20px;
-    
- }
+ .footerbgedit{
+    background-color: #D2EFF7;
 
+}
+.editwidth{
+    width: 97%;
+}
+  
+  

@@ -5,19 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accept Lab request</title>
-    <link rel="stylesheet" href="bloodreqform.css">
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bloodreqform.css">
     <style>
     .user-container {
       margin-bottom: 20px;
     }
+    .footerbgedit{
+    background-color: #D2EFF7;
+
+}
+.editbg{
+    background-color: rgba(75, 184, 206, 0.247); 
+}
+.editnbarlog{
+    border: 1px solid black;
+    background-color: red;
+    border-radius: 10px;
+}
+.editnbarlog:hover{
+    border: 1px solid rgb(253, 60, 60);
+    border-radius: 20px;
+    -webkit-transition: 0.3s;
+    background-color: rgb(253, 60, 60);
+  transition: 0.5s;
+}
   </style>
-    <script>
-    function removeUser(SampleID) {
-      var container = document.getElementById(SampleID);
-      container.style.display = 'none';
-    }
-  </script>
+ 
 </head>
 <body>
     
@@ -35,13 +50,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active px-5 editnbar mx-5 mb-2" aria-current="page" href="patienthome.html">Home</a>
+                <a class="nav-link active px-5 editnbar mx-5 mb-2" aria-current="page" href="labhome.html">Home</a>
               </li>
           <li class="nav-item">
-            <a class="nav-link active px-5 editnbar mx-5 mb-2" aria-current="page" href="services.html">Services</a>
+            <a class="nav-link active px-5 editnbar mx-5 mb-2" aria-current="page" href="labservices.html">Services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active px-5 editnbar mx-5" aria-current="page" href="contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active px-5 editnbarlog mx-5" aria-current="page" href="../portal.html">Logout</a>
           </li>
        </ul>
       </div>
@@ -55,7 +73,11 @@
 </div>
 
 
-    <h1 class="text-center lheadingedit m-5">User Data</h1>
+<div class="py-5 editbg mb-5 mt-2">
+<h1 class="text-center lheadingedit">User Data</h1>
+<hr class="mx-auto w-25">
+</div>
+    
 
     <?php
     $servername = "localhost";
@@ -92,9 +114,9 @@
             
              
   
-            echo '<center><div class="user-container border rounded shadow-lg mb-3 bg-body w-75  p-5 editbldbtn" id="' . $SampleID . '">';
+            echo '<center><div class="user-container  border rounded-5 shadow-lg mb-4 bg-body w-75  p-5 editbldbtn" id="' . $SampleID . '">';
             // echo "<span class='edittext'>Sample ID: " . $SampleID . "</span>";
-            echo "<span class='edittext'>Patient Name: " . $Patient_Name. "</span>";
+            echo "<ul><span class='edittext'><li>Patient Name: " . $Patient_Name. "</li></span></ul>";
             // echo "Gender: " . $Gender . "<br>";
             // echo "email: " . $email . "<br>";
             // echo "City: " . $City . "<br>";
@@ -108,8 +130,8 @@
   
             echo ' <form action="" method="POST">';
             echo '<input type="hidden" name="SampleID" value="' . $SampleID . '">';
-            echo '<a class="btn btn-outline-primary  editbtnf mt-2 mb-3 mx-2" href="completedet.php?SampleID=' . $SampleID . '">View Complete Data</a>';
-            echo '<button class="btn btn-outline-danger  editbtnf mt-2 mb-3" onclick="removeUser(' . $SampleID . ')">Remove</button>';
+            echo '<a class="btn btn-outline-primary  editbtnf mx-2 mb-2" href="completedet.php?SampleID=' . $SampleID . '">View Complete Data</a>';
+            echo '<button class="btn btn-outline-danger  editbtnf " onclick="removeUser(' . $SampleID . ')">Remove</button>';
             echo '</form>';
   
             
@@ -123,7 +145,13 @@
     $conn->close();
     ?>
 
+<!-- footer  -->
+<div class="text-center footerbgedit py-4">
+    <p>Copyright © 2012 - 2023 TermsFeed®. All rights reserved...</p>
+    </div>
 
+
+   <script src="bloodreqform.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

@@ -7,6 +7,20 @@
     <title>Blood Sample Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bloodsamplef.css">
+    <style>
+      .editnbarlog{
+    border: 1px solid black;
+    background-color: red;
+    border-radius: 10px;
+}
+.editnbarlog:hover{
+    border: 1px solid rgb(253, 60, 60);
+    border-radius: 20px;
+    -webkit-transition: 0.3s;
+    background-color: rgb(253, 60, 60);
+  transition: 0.5s;
+}
+    </style>
 </head>
 <body>
     
@@ -29,6 +43,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active px-5 editnbar mx-5" aria-current="page" href="contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link active px-5 editnbarlog mx-5" aria-current="page" href="../portal.html">Logout</a>
           </li>
        </ul>
       </div>
