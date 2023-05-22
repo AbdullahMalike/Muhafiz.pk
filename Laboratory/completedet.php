@@ -147,8 +147,19 @@ if ($result->num_rows > 0) {
 
   
 
+           echo '<div class="text-center mt-3">';
+           echo '<a class="btn btn-primary" href="upload_report.php?SampleID=' . $SampleID . '&PatientName=' . urlencode($row["Patient_Name"]) . '">Upload Report</a>';
+           echo '</div>';
+           
 
 
+
+
+
+
+     
+         
+           
 
 
             

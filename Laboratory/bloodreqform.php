@@ -115,8 +115,8 @@
              
   
             echo '<center><div class="user-container  border rounded-5 shadow-lg mb-4 bg-body w-75  p-5 editbldbtn" id="' . $SampleID . '">';
-            // echo "<span class='edittext'>Sample ID: " . $SampleID . "</span>";
-            echo "<ul><span class='edittext'><li>Patient Name: " . $Patient_Name. "</li></span></ul>";
+            echo "<span class='edittext'>Sample ID: " . $SampleID . "</span>";
+            echo "<span class='edittext'>Patient Name: " . $Patient_Name. "</span>";
             // echo "Gender: " . $Gender . "<br>";
             // echo "email: " . $email . "<br>";
             // echo "City: " . $City . "<br>";
@@ -131,7 +131,6 @@
             echo ' <form action="" method="POST">';
             echo '<input type="hidden" name="SampleID" value="' . $SampleID . '">';
             echo '<a class="btn btn-outline-primary  editbtnf mx-2 mb-2" href="completedet.php?SampleID=' . $SampleID . '">View Complete Data</a>';
-            echo '<button class="btn btn-outline-danger  editbtnf " onclick="removeUser(' . $SampleID . ')">Remove</button>';
             echo '</form>';
   
             

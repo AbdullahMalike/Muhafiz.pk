@@ -1,3 +1,57 @@
+<?php
+    $host = 'localhost';
+    $username = 'root';
+    $password = '';
+    $database = 'muhafiz';
+
+    // Create a connection
+    $conn = new mysqli($host, $username, $password, $database);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Check if the form is submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Check if all required fields are filled
+        if (!empty($_POST['pname']) && !empty($_POST['atime']) && !empty($_POST['pemail'])) {
+            // Retrieve the form data
+            $pname = $_POST['pname'];
+            $atime = $_POST['atime'];
+            $pemail = $_POST['pemail'];
+            $SelectCity = $_POST['SelectCity'];
+            $pnumber = $_POST['pnumber'];
+            $SelectReason = $_POST['SelectReason'];
+            $paddress = $_POST['paddress'];
+            $pprefdate = $_POST['pprefdate'];
+            $SelectArea = $_POST['SelectArea'];
+            $special_instruction = $_POST['special_instruction'];
+
+            // Prepare and bind the statement
+            $stmt = $conn->prepare("INSERT INTO ambulance_form (Patient_Name, Pickuptime, patient_email, City, Cell, Reason, Address, Preferred_Date, Area, Special_Instruction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssssss", $pname, $atime, $pemail, $SelectCity, $pnumber, $SelectReason, $paddress, $pprefdate, $SelectArea, $special_instruction);
+
+            // Execute the statement
+            if ($stmt->execute()) {
+                // Success! Data is inserted into the database
+                // Redirect to the next page or display a success message
+                header("Location: Thankpage.html");
+                // exit();
+            } else {
+                // Error occurred
+                echo "Error: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            // Display an error message when required fields are not filled
+            echo "Please fill all required fields.";
+        }
+    }
+    ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,41 +74,7 @@
     background-color: rgb(253, 60, 60);
   transition: 0.5s;
 }
-.popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        z-index: 9999;
-        max-width: 400px;
-        width: 90%;
-        text-align: center;
-        animation: fadeOut 3s linear forwards;
-        border-radius: 10px;
-    }
 
-    @keyframes fadeOut {
-        0% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            display: none;
-        }
-    }
-
-    .popup h2 {
-        margin-top: 0;
-        font-size: 24px;
-        color: #333;
-    }
     </style>
 </head>
 <body>
@@ -214,67 +234,6 @@
 
 
 
-<?php
-    $host = 'localhost';
-    $username = 'root';
-    $password = '';
-    $database = 'muhafiz';
 
-    // Create a connection
-    $conn = new mysqli($host, $username, $password, $database);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Check if the form is submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Check if all required fields are filled
-        if (!empty($_POST['pname']) && !empty($_POST['atime']) && !empty($_POST['pemail'])) {
-            // Retrieve the form data
-            $pname = $_POST['pname'];
-            $atime = $_POST['atime'];
-            $pemail = $_POST['pemail'];
-            $SelectCity = $_POST['SelectCity'];
-            $pnumber = $_POST['pnumber'];
-            $SelectReason = $_POST['SelectReason'];
-            $paddress = $_POST['paddress'];
-            $pprefdate = $_POST['pprefdate'];
-            $SelectArea = $_POST['SelectArea'];
-            $special_instruction = $_POST['special_instruction'];
-
-            // Prepare and bind the statement
-            $stmt = $conn->prepare("INSERT INTO ambulance_form (Patient_Name, Pickuptime, patient_email, City, Cell, Reason, Address, Preferred_Date, Area, Special_Instruction) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssssss", $pname, $atime, $pemail, $SelectCity, $pnumber, $SelectReason, $paddress, $pprefdate, $SelectArea, $special_instruction);
-
-            // Execute the statement
-            if ($stmt->execute()) {
-                // Success! Data is inserted into the database
-                echo "<script>
-                        function showPopup() {
-                            var popup = document.createElement('div');
-                            popup.classList.add('popup');
-                            popup.innerHTML = '<h2>Form data is stored successfully.</h2>';
-                            document.body.appendChild(popup);
-                        }
-                        showPopup();
-                      </script>";
-                // Redirect to the next page or display a success message
-                // header("Location: next_page.php");
-                // exit();
-            } else {
-                // Error occurred
-                echo "Error: " . $stmt->error;
-            }
-
-            // Close the statement
-            $stmt->close();
-        } else {
-            // Display an error message when required fields are not filled
-            echo "Please fill all required fields.";
-        }
-    }
-    ?>
 
 

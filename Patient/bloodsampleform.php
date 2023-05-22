@@ -1,3 +1,37 @@
+<?php
+// Establish database connection
+$conn = mysqli_connect("localhost", "root", "", "muhafiz");
+
+if (isset($_POST['submit'])) {
+    $pname = $_POST['pname'];
+    $Gender = $_POST['Gender'];
+    $pdob = $_POST['pdob'];
+    $paddress = $_POST['paddress'];
+    $pemail = $_POST['pemail'];
+    $pprefdate = $_POST['pprefdate'];
+    $city = $_POST['city'];
+    $area = $_POST['area'];
+    $pnumber = $_POST['pnumber'];
+    $speicalinst = $_POST['speicalinst'];
+
+    if (!empty($pname) && !empty($Gender) && !empty($pdob) && !empty($paddress) && !empty($pemail) && !empty($pprefdate) && !empty($city) && !empty($area) && !empty($pnumber) && !empty($speicalinst)) {
+        $sql = "INSERT INTO blood_sample_form (Patient_Name, Gender, email, City, Phone_No, DOB, Pick_Up_Address, Preferred_Date, Area, Special_Instruction, created_at) VALUES ('$pname', '$Gender', '$pemail', '$city', '$pnumber', '$pdob', '$paddress', '$pprefdate', '$area', '$speicalinst', CURRENT_TIMESTAMP)";
+
+        if (mysqli_query($conn, $sql)) {
+            // Add this line to prevent form data from being resubmitted when the page is refreshed
+            header("Location: Thankpage.html");
+            exit;
+        } else {
+            echo "Error: " . mysqli_error($conn);
+        }
+    } else {
+        echo "<script>alert('Please fill in all fields.');</script>";
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,41 +220,4 @@
 
 
 
-<?php
 
-// Establish database connection
-$conn = mysqli_connect("localhost", "root", "", "muhafiz");
-
-if(isset($_POST['submit'])) {
-  $pname = $_POST['pname'];
-  $Gender = $_POST['Gender'];
-  $pdob = $_POST['pdob'];
-  $paddress = $_POST['paddress'];
-  $pemail = $_POST['pemail'];
-  $pprefdate = $_POST['pprefdate'];
-  $city = $_POST['city'];
-  $area = $_POST['area'];
-  $pnumber = $_POST['pnumber'];
-  $speicalinst = $_POST['speicalinst'];
-
-
-  if(!empty($pname) && !empty($Gender) && !empty($pdob) && !empty($paddress) && !empty($pemail) && !empty($pprefdate) && !empty($city) && !empty($area) && !empty($pnumber) && !empty($speicalinst) ) {
-   
-      $sql = "INSERT INTO blood_sample_form (Patient_Name, Gender, email, City, Phone_No, DOB, Pick_Up_Address, Preferred_Date, Area, Special_Instruction , created_at) VALUES ('$pname', '$Gender','$pemail', '$city', '$pnumber', '$pdob', '$paddress', '$pprefdate', '$area', '$speicalinst' , CURRENT_TIMESTAMP)";
-
-      if(mysqli_query($conn, $sql)) {
-        echo "Data inserted successfully!";
-      } else {
-        echo "Error: " . mysqli_error($conn);
-      }
-
-      // Add this line to prevent form data from being resubmitted when the page is refreshed
-      // header("Location: services.html ");
-      exit;
-   
-  } else {
-    echo "<script>alert('Please fill in all fields.');</script>";
-
-  }
-}
-?>
