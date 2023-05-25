@@ -1,7 +1,3 @@
-/* *{
-    padding: 0px;
-    margin: 0px;
-} */
 .llogoedit{
     width: 5%;
 }
@@ -17,12 +13,10 @@
     background-color: rgb(253, 60, 60);
   transition: 0.5s;
 }
-.imgedit{
-    width: 100%;
-    height: 80vh;
-    
-}
-.editnbarlog{
+.editimgb{
+    height: 50vh;
+ }
+ .editnbarlog{
     border: 1px solid black;
     background-color: red;
     border-radius: 10px;
@@ -33,10 +27,6 @@
     -webkit-transition: 0.3s;
     background-color: rgb(253, 60, 60);
   transition: 0.5s;
-}
-.footerbgedit{
-    background-color: #D2EFF7;
-
 }
 .lheadingedit{
     font-size: 40px;
@@ -49,4 +39,11 @@ background: linear-gradient(to right, #42A5CF 0%, #FF1C1C 36%, #11AFCF 100%);
 }
 .editbg{
     background-color: rgba(75, 184, 206, 0.247); 
+}
+.editwidth{
+    width: 97%;
+}
+.footerbgedit{
+    background-color: #D2EFF7;
+
 }

@@ -115,8 +115,8 @@
              
   
             echo '<center><div class="user-container  border rounded-5 shadow-lg mb-4 bg-body w-75  p-5 editbldbtn" id="' . $SampleID . '">';
-            echo "<span class='edittext'>Sample ID: " . $SampleID . "</span>";
-            echo "<span class='edittext'>Patient Name: " . $Patient_Name. "</span>";
+            echo "<span class='edittext'><strong>Sample ID: </strong>" . $SampleID . "</span>";
+            echo "<span class='edittext'><strong>Patient Name: </strong>" . $Patient_Name. "</span>";
             // echo "Gender: " . $Gender . "<br>";
             // echo "email: " . $email . "<br>";
             // echo "City: " . $City . "<br>";
