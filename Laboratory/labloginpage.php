@@ -1,3 +1,38 @@
+
+<?php
+if(isset($_POST['submit'])) {
+  // Establish database connection
+  $conn = mysqli_connect("localhost", "root", "", "muhafiz");
+
+  // Retrieve user input from login form
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  // SQL query to retrieve user data
+  $sql = "SELECT * FROM laboratorysignup WHERE email='$email' AND password='$password'";
+
+  // Execute the query and retrieve the result set
+  $result = mysqli_query($conn, $sql);
+
+  // Retrieve the number of rows in the result set
+  $num_rows = mysqli_num_rows($result);
+
+  // Check if the number of rows is greater than 0
+  if($num_rows > 0) {
+    // User is authenticated, redirect to next page
+    header("Location:labhome.html");
+    exit;
+  } else {
+    // User is not authenticated, display error message
+    echo "<script>alert('Incorrect email or Password')</script>";
+  }
+
+  // Close the database connection
+  mysqli_close($conn);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +48,7 @@
 
  <div class="container-fluid">
         <div class="row">
-    <div class="col-md-6">
-        <img src="../images/lablogingif.gif" class="editpimg" alt="">
-    </div>
+ 
     <div class="col-md-6">
     
         <div class="ptbgimg py-5 ">
@@ -66,6 +99,11 @@
     
         </div>
     </div>
+
+
+    <div class="col-md-6">
+        <img src="../images/lablogingif.gif" class="editpimg" alt="">
+    </div>
         </div>
     </div>
 
@@ -74,37 +112,3 @@
 </body>
 </html>
 
-
-
-<?php
-if(isset($_POST['submit'])) {
-  // Establish database connection
-  $conn = mysqli_connect("localhost", "root", "", "muhafiz");
-
-  // Retrieve user input from login form
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-
-  // SQL query to retrieve user data
-  $sql = "SELECT * FROM laboratorysignup WHERE email='$email' AND password='$password'";
-
-  // Execute the query and retrieve the result set
-  $result = mysqli_query($conn, $sql);
-
-  // Retrieve the number of rows in the result set
-  $num_rows = mysqli_num_rows($result);
-
-  // Check if the number of rows is greater than 0
-  if($num_rows > 0) {
-    // User is authenticated, redirect to next page
-    header("Location:labhome.html");
-    exit;
-  } else {
-    // User is not authenticated, display error message
-    echo "<script>alert('Incorrect email or Password')</script>";
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
-}
-?>

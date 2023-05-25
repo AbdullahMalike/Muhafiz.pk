@@ -1,3 +1,70 @@
+<?php
+if (isset($_GET['id'])) {
+    $ambulanceFormID = $_GET['id'];
+
+    // Connect to the database
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "muhafiz";
+
+    $conn = new mysqli($servername, $username, $password, $database);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve complete details for the selected record
+    $sql = "SELECT * FROM ambulance_form WHERE Ambulance_form_ID = '$ambulanceFormID'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        if (isset($_POST['accepted'])) {
+            // Retrieve data for backup
+            $backupAmbulanceFormID = $row['Ambulance_form_ID'];
+            $patientName = $row['Patient_Name'];
+            $pickupTime = $row['Pickuptime'];
+            $patientEmail = $row['patient_email'];
+            $city = $row['City'];
+            $cell = $row['Cell'];
+            $reason = $row['Reason'];
+            $address = $row['Address'];
+            $preferredDate = $row['Preferred_Date'];
+            $area = $row['Area'];
+            $specialInstruction = $row['Special_Instruction'];
+            $createdAt = $row['created_at'];
+
+            // Insert data into backup table
+            $backupSql = "INSERT INTO backup_ambulance_form_record (Ambulance_form_ID, Patient_Name, Pickuptime, patient_email, City, Cell, Reason, Address, Preferred_Date, Area, Special_Instruction, created_at) VALUES ('$backupAmbulanceFormID', '$patientName', '$pickupTime', '$patientEmail', '$city', '$cell', '$reason', '$address', '$preferredDate', '$area', '$specialInstruction', '$createdAt')";
+
+            if ($conn->query($backupSql) === TRUE) {
+                // Data inserted successfully, now delete from the main table
+                $deleteSql = "DELETE FROM ambulance_form WHERE Ambulance_form_ID = '$ambulanceFormID'";
+                if ($conn->query($deleteSql) === TRUE) {
+                    // Redirect to the next page with the success message
+                    header("Location: next_page.php");
+
+                    
+                    exit;
+                } else {
+                    echo "Error deleting record: " . $conn->error;
+                }
+            } else {
+                echo "Error: " . $backupSql . "<br>" . $conn->error;
+            }
+        }
+    } else {
+        echo "Record not found.";
+    }
+
+    $conn->close();
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,7 +259,9 @@ if (isset($_GET['id'])) {
                 $deleteSql = "DELETE FROM ambulance_form WHERE Ambulance_form_ID = '$ambulanceFormID'";
                 if ($conn->query($deleteSql) === TRUE) {
                     // Redirect to the next page with the success message
-                    header("Location: next_page.php?message=success");
+                    header("Location: next_page.php");
+
+                    
                     exit;
                 } else {
                     echo "Error deleting record: " . $conn->error;

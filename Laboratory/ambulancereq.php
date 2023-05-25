@@ -52,7 +52,7 @@
 </div>
 
 
-<div class="container">
+<div class="container mb-5">
     <form action="" method="GET" class="text-center  border shadow-lg rounded-3 p-2">
       <div class="d-flex justify-content-center">
         <div class="form-group w-50">
@@ -86,8 +86,8 @@
 
         if ($result->num_rows > 0) {
             echo "<div id='recordsContainer'>";
-            echo "<h3 class='mb-3 text-center'>Records for selected date:</h3>";
-            echo "<ul class='list-group mb-5 shadow-lg rounded-4 ' id='recordsList'>";
+            echo "<h3 class='mb-5 mt-5 text-center lheadingedit'>Records for selected date:</h3>";
+            echo "<ul class='list-group mb-5 shadow-lg rounded-4' id='recordsList'>";
             while ($row = $result->fetch_assoc()) {
                 $ambulanceFormID = $row['Ambulance_form_ID'];
                 $patientName = $row['Patient_Name'];

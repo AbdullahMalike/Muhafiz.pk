@@ -1,3 +1,40 @@
+
+<?php
+
+// Establish database connection
+$conn = mysqli_connect("localhost", "root", "", "muhafiz");
+
+if(isset($_POST['submit'])) {
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  $confirm_password = $_POST['confirm_password'];
+
+  if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)) {
+    if($password === $confirm_password) {
+      $sql = "INSERT INTO laboratorysignup (laboratory_scientist, email, password, created_at) VALUES ('$name', '$email', '$password', CURRENT_TIMESTAMP)";
+
+      if(mysqli_query($conn, $sql)) {
+        echo "Data inserted successfully!";
+      } else {
+        echo "Error: " . mysqli_error($conn);
+      }
+
+      // Add this line to prevent form data from being resubmitted when the page is refreshed
+      header("Location: labloginpage.php ");
+      exit;
+    } else {
+      echo "<script>alert('Passwords do not match.');</script>";
+      
+    }
+  } else {
+    echo "<script>alert('Please fill in all fields.');</script>";
+
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +50,7 @@
 
     <div class="container-fluid">
         <div class="row">
-    <div class="col-md-6">
-        <img src="../images/labsignupgif.gif" class="editpimg" alt="">
-    </div>
+  
     <div class="col-md-6">
     
         <div class="ptbgimg py-1 ">
@@ -72,6 +107,10 @@
     
     
         </div>
+
+        <div class="col-md-6">
+        <img src="../images/labsignupgif.gif" class="editpimg" alt="">
+    </div>
     </div>
         </div>
     </div>
@@ -86,38 +125,3 @@
 
 
 
-
-<?php
-
-// Establish database connection
-$conn = mysqli_connect("localhost", "root", "", "muhafiz");
-
-if(isset($_POST['submit'])) {
-  $name = $_POST['name'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $confirm_password = $_POST['confirm_password'];
-
-  if(!empty($name) && !empty($email) && !empty($password) && !empty($confirm_password)) {
-    if($password === $confirm_password) {
-      $sql = "INSERT INTO laboratorysignup (laboratory_scientist, email, password, created_at) VALUES ('$name', '$email', '$password', CURRENT_TIMESTAMP)";
-
-      if(mysqli_query($conn, $sql)) {
-        echo "Data inserted successfully!";
-      } else {
-        echo "Error: " . mysqli_error($conn);
-      }
-
-      // Add this line to prevent form data from being resubmitted when the page is refreshed
-      header("Location: labloginpage.php ");
-      exit;
-    } else {
-      echo "<script>alert('Passwords do not match.');</script>";
-      
-    }
-  } else {
-    echo "<script>alert('Please fill in all fields.');</script>";
-
-  }
-}
-?>
